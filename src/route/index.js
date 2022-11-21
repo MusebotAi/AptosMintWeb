@@ -11,7 +11,7 @@ import personal from '../components/personal.vue'
 const routes = [
     {
         path:"/", //访问的路径
-        component: userConfig //对应的组件
+        component: compact //对应的组件
     },
     {
         path:"/userset", //访问的路径

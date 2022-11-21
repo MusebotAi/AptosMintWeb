@@ -2,8 +2,8 @@ import { ref } from 'vue'
 import moment from "moment/moment";
 import { NetType,MintNFT } from './nftmint'
 
-// const moduleAddress = "0x8d766817feaf415972392de156716641f238fc8cdbba1e85d83308f81356495f"
-const moduleAddress = "0x7b516e77daff31895f43847b9733661b270297608b4fc42e5a327ee98e679722"
+const moduleAddress = "0x8d766817feaf415972392de156716641f238fc8cdbba1e85d83308f81356495f"
+// const moduleAddress = "0x7b516e77daff31895f43847b9733661b270297608b4fc42e5a327ee98e679722"
 const mintNFT = new MintNFT(NetType.TEST_NET,moduleAddress)
 
 const model = ref({

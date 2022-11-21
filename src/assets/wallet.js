@@ -19,6 +19,13 @@ class Wallet {
         this.accountAddr = ac.address
     }
 
+    async disconnect() {
+        this.accountAddr = "";
+        await this.walletObj.disconnect()
+        this.walletObj = null;
+        Wallet.walletInstance = null;
+    }
+
     onAccountChange(func) {
         this.walletObj.onAccountChange((account) =>{
             if(account){
@@ -119,5 +126,15 @@ const connect = async (idx) => {
     return Wallet.walletInstance
 }
 
-export { Wallet,getList,connect } 
+/**
+ * 断开钱包链接
+ */
+const disconnect = async () => {
+    if(Wallet.walletInstance) {
+        await Wallet.walletInstance.disconnect();
+    }
+    Wallet.walletInstance = null;
+}
+
+export { Wallet,getList,connect,disconnect } 
 

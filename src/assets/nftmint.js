@@ -1,6 +1,5 @@
 import { AptosClient, TokenClient,HexString } from "aptos";
 import axios from 'axios'
-import { NButton } from "naive-ui";
 import { Wallet} from './wallet'
 
 const APT_UNIT = 100_000_000
@@ -359,6 +358,37 @@ class MintNFT {
             return false   
         } 
     }
+
+    /**
+     * 修改demo网站一键生成NFT的配置
+     * @param {Object{     
+     *               collection_name: String,       集合名称
+     *               token_pre: String,             token名称前缀
+     *         }} params 
+     * @returns 
+     */
+     async setMintOneConfig(params) {
+        let funName = `${this.moduleAddress}::mintone::modify_module_by_owner`
+        let args =  [params.collection_name,params.token_pre]
+        return await Wallet.getWallet()?.runTransAction(funName,args,this.client)
+    }
+
+    /**
+     * mintone操作，返回成功失败 （用于demo网站一键生成NFT)
+     * @param {String} tokenUri 
+     * @returns 
+     */
+     async mintOne(tokenUri) {
+        let funName = `${this.moduleAddress}::mintone::mint_nft`
+        let args =  [tokenUri]
+        try{
+            await Wallet.getWallet()?.runTransAction(funName,args,this.client)
+            return true
+        }catch(e){
+            console.log(e)
+            return false   
+        } 
+    };
 
     async getAccounts() {
         let ac = await this.client.getAccountResources(this.moduleAddress)
