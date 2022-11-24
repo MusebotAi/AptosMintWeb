@@ -3,7 +3,7 @@ import moment from "moment/moment";
 import { NetType,MintNFT } from './nftmint'
 import { EthMint,ABIS } from './ethmint';
 
-const moduleAddress = "0x8d766817feaf415972392de156716641f238fc8cdbba1e85d83308f81356495f"
+const moduleAddress = "0x03283aa71c470dbd3cfb4c14422ab5b7794c8d8650f44db7a0f9e8dc7fc74a96"
 // const moduleAddress = "0x7b516e77daff31895f43847b9733661b270297608b4fc42e5a327ee98e679722"
 const mintNFT = new MintNFT(NetType.TEST_NET,moduleAddress)
 const ethAddress = "0x5fB0590ADEa00E1089905e124DdA603c10FA64BD";
