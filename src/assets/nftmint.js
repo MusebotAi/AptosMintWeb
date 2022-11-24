@@ -375,12 +375,13 @@ class MintNFT {
 
     /**
      * mintone操作，返回成功失败 （用于demo网站一键生成NFT)
-     * @param {String} tokenUri 
+     * @param {String} tokenName  NFT名字
+     * @param {String} tokenUri   NFT元数据路径
      * @returns 
      */
-     async mintOne(tokenUri) {
+     async mintOne(tokenName,tokenUri) {
         let funName = `${this.moduleAddress}::mintone::mint_nft`
-        let args =  [tokenUri]
+        let args =  [tokenName,tokenUri]
         try{
             await Wallet.getWallet()?.runTransAction(funName,args,this.client)
             return true

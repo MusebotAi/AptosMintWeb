@@ -3,11 +3,11 @@ import moment from "moment/moment";
 import { NetType,MintNFT } from './nftmint'
 import { EthMint,ABIS } from './ethmint';
 
-const moduleAddress = "0x03283aa71c470dbd3cfb4c14422ab5b7794c8d8650f44db7a0f9e8dc7fc74a96"
+const moduleAddress = "0x2898b76984e5cfc245f99762970e0c40fb0f7b29f82b50b8448ac64507591391"
 // const moduleAddress = "0x7b516e77daff31895f43847b9733661b270297608b4fc42e5a327ee98e679722"
 const mintNFT = new MintNFT(NetType.TEST_NET,moduleAddress)
-const ethAddress = "0x5fB0590ADEa00E1089905e124DdA603c10FA64BD";
-const ethMint = new EthMint(ABIS.MuseBotAi,ethAddress);
+const ethAddress = "0x5c0A97F09FbDC9aa420f3Ac2a76adB014CB23246";
+const ethMint = new EthMint(ABIS.MuseMint,ethAddress);
 
 const model = ref({
     collection_name: "nft_collections",
@@ -126,10 +126,10 @@ const getAccountInfo = async () =>{
     console.log(account.value)
 }
 
-const ethMintOne = async (tokenUri) => {
+const ethMintOne = async (name,tokenUri) => {
     loading.value = true
     try{
-        ethMint.mintOne(tokenUri);
+        await ethMint.mintOne(name,tokenUri);
     }catch(e){
 
     }
@@ -138,4 +138,17 @@ const ethMintOne = async (tokenUri) => {
     }
 }
 
-export { ethMintOne,publishPackage, setModule, mint_nft, getModuleConfig, getAccountInfo,setUserConfig,getUserConfig,mint_users, model, account, loading, userConfig }
+const mintOne = async (name,tokenUri) => {
+    loading.value = true
+    try{
+        await mintNFT.mintOne(name,tokenUri)
+    }catch(e){
+
+    }
+    finally{
+        loading.value = false
+    }
+}
+
+
+export { mintOne,ethMintOne,publishPackage, setModule, mint_nft, getModuleConfig, getAccountInfo,setUserConfig,getUserConfig,mint_users, model, account, loading, userConfig }

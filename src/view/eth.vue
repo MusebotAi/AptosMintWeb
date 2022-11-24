@@ -6,7 +6,7 @@
     const tokenUri = ref("https://stacktrace.top/imgs/1.json")
 
     const mintOne = async ()=>{
-        await ethMintOne(tokenUri.value);
+        await ethMintOne('abdce',tokenUri.value);
     }
 
 </script>

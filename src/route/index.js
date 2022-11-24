@@ -6,6 +6,7 @@ import userConfig from '../view/userConfig.vue'
 import personal from '../components/personal.vue'
 import aptos from '../view/aptos.vue'
 import eth from '../view/eth.vue'
+import mintUsers from '../view/mintUsers.vue'
  
 // 配置信息中需要的页面相关配置
  
@@ -28,6 +29,11 @@ const routes = [
                 path:"/userset", //访问的路径
                 name:'userset',
                 component: userConfig //对应的组件
+            },
+            {
+                path:"/mintone", //访问的路径
+                name:'mintone',
+                component: mintUsers //对应的组件
             },
             {
                 path:"/compact", //访问的路径
