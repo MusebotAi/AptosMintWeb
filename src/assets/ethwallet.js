@@ -1,6 +1,15 @@
 import { Wallet } from './wallet'
 
-class EthWallet extends Wallet {
+class EthWallet {
+    constructor(){
+        this.accountAddr = ""
+        this.walletObj = null
+        this.isConnect = false;
+    }
+
+    getAddress() {
+        return this.accountAddr
+    }
 
     async connect() {
         try{
