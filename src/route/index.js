@@ -4,6 +4,8 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import compact from '../view/compact.vue'
 import userConfig from '../view/userConfig.vue'
 import personal from '../components/personal.vue'
+import aptos from '../view/aptos.vue'
+import eth from '../view/eth.vue'
  
 // 配置信息中需要的页面相关配置
  
@@ -11,23 +13,34 @@ import personal from '../components/personal.vue'
 const routes = [
     {
         path:"/", //访问的路径
-        component: compact //对应的组件
+        redirect: { name: 'eth' } 
     },
     {
-        path:"/userset", //访问的路径
-        name:'userset',
-        component: userConfig //对应的组件
+        path:"/eth", //访问的路径
+        name:'eth',
+        component: eth //对应的组件
     },
     {
-        path:"/compact", //访问的路径
-        name: 'compact',
-        component: compact //对应的组件
+        path:"/aptos",
+        component: aptos,
+        children: [
+            {
+                path:"/userset", //访问的路径
+                name:'userset',
+                component: userConfig //对应的组件
+            },
+            {
+                path:"/compact", //访问的路径
+                name: 'compact',
+                component: compact //对应的组件
+            },
+            {
+                path:"/personal/:address", //访问的路径
+                name:'personal',
+                component: personal //对应的组件
+            }
+        ],
     },
-    {
-        path:"/personal/:address", //访问的路径
-        name:'personal',
-        component: personal //对应的组件
-    }
 ]
  
 // 创建路由

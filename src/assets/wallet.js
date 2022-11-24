@@ -4,6 +4,7 @@ class Wallet {
     constructor(){
         this.accountAddr = ""
         this.walletObj = null
+        this.isConnect = false;
     }
 
     static getWallet() {
@@ -17,6 +18,7 @@ class Wallet {
     async connect() {
         let ac = await this.walletObj.connect()
         this.accountAddr = ac.address
+        this.isConnect = true;
     }
 
     async disconnect() {
@@ -24,6 +26,7 @@ class Wallet {
         await this.walletObj.disconnect()
         this.walletObj = null;
         Wallet.walletInstance = null;
+        this.isConnect = false;
     }
 
     onAccountChange(func) {

@@ -1,10 +1,13 @@
 import { ref } from 'vue'
 import moment from "moment/moment";
 import { NetType,MintNFT } from './nftmint'
+import { EthMint,ABIS } from './ethmint';
 
 const moduleAddress = "0x8d766817feaf415972392de156716641f238fc8cdbba1e85d83308f81356495f"
 // const moduleAddress = "0x7b516e77daff31895f43847b9733661b270297608b4fc42e5a327ee98e679722"
 const mintNFT = new MintNFT(NetType.TEST_NET,moduleAddress)
+const ethAddress = "0x5fB0590ADEa00E1089905e124DdA603c10FA64BD";
+const ethMint = new EthMint(ABIS.MuseBotAi,ethAddress);
 
 const model = ref({
     collection_name: "nft_collections",
@@ -123,4 +126,16 @@ const getAccountInfo = async () =>{
     console.log(account.value)
 }
 
-export { publishPackage, setModule, mint_nft, getModuleConfig, getAccountInfo,setUserConfig,getUserConfig,mint_users, model, account, loading, userConfig }
+const ethMintOne = async (tokenUri) => {
+    loading.value = true
+    try{
+        ethMint.mintOne(tokenUri);
+    }catch(e){
+
+    }
+    finally{
+        loading.value = false
+    }
+}
+
+export { ethMintOne,publishPackage, setModule, mint_nft, getModuleConfig, getAccountInfo,setUserConfig,getUserConfig,mint_users, model, account, loading, userConfig }
