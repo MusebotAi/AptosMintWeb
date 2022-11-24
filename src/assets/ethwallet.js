@@ -1,5 +1,3 @@
-import { Wallet } from './wallet'
-
 class EthWallet {
     constructor(){
         this.accountAddr = ""
@@ -15,6 +13,7 @@ class EthWallet {
         try{
             let accounts = await this.walletObj.request({ method: 'eth_requestAccounts' })
             this.accountAddr = accounts[0];
+            this.isConnect = true;
         }catch(err) {
             if (err.code === 4001) {
                 console.log('Please connect to MetaMask.');
