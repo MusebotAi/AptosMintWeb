@@ -413,13 +413,10 @@ class EthMint {
             await this.wallet.connect();
         }
         try{
-            let result = await this.contract.methods.balanceOf(this.wallet.getAddress()).call();
-            console.log('11',result);
-            result = await this.contract.methods.mintOne(tokenUri).send({from: this.wallet.getAddress()});
-            console.log('12',result);
-            result = await this.contract.methods.balanceOf(this.wallet.getAddress()).call();
-            console.log('13',result);
-            return true;
+            let num1 = await this.contract.methods.balanceOf(this.wallet.getAddress()).call();
+            await this.contract.methods.mintOne(tokenUri).send({from: this.wallet.getAddress()});
+            let num2 = await this.contract.methods.balanceOf(this.wallet.getAddress()).call();
+            return num2 > num1;
         }catch(e){
             console.error(e);
         }
